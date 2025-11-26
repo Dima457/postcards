@@ -1,0 +1,68 @@
+.frame-selector {
+  width: 100%;
+}
+
+.frames-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  margin-top: 1rem;
+}
+
+.frame-card {
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  max-width: 200px;
+}
+
+.frame-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(76, 175, 80, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.frame-card.selected {
+  border-color: #4caf50;
+  background: rgba(76, 175, 80, 0.1);
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+}
+
+.frame-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.frame-name {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  color: #e8f4f8;
+  text-align: center;
+}
+
+/* Светлая тема */
+@media (prefers-color-scheme: light) {
+  .frame-card {
+    background: rgba(255, 255, 255, 0.7);
+  }
+  
+  .frame-card:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .frame-card.selected {
+    background: rgba(76, 175, 80, 0.2);
+  }
+  
+  .frame-name {
+    color: #2c3e50;
+  }
+}

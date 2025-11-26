@@ -1,0 +1,169 @@
+/* App.css */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+}
+
+/* Стили для заголовка */
+.app-header {
+  padding: 2rem 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 1rem;
+}
+
+.app-header h1 {
+  font-size: 2.8em;
+  line-height: 1.1;
+  color: #e8f4f8;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7),
+               0 0 30px rgba(0, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.app-subtitle {
+  color: #c8e6c9;
+  font-size: 1.2em;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Стили для шагов */
+.app-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.frame-selection, .text-selection, .preview-section {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.frame-selection:hover, .text-selection:hover, .preview-section:hover {
+  border-color: rgba(76, 175, 80, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+h2 {
+  color: #c8e6c9;
+  border-bottom: 2px solid #4caf50;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Анимации появления */
+.frame-selection, .text-selection, .preview-section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  #root {
+    padding: 0.5rem;
+  }
+  
+  .app-header h1 {
+    font-size: 2em;
+  }
+  
+  .app-subtitle {
+    font-size: 1em;
+  }
+  
+  .frame-selection, .text-selection, .preview-section {
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.7em;
+  }
+  
+  .frame-selection, .text-selection, .preview-section {
+    padding: 1rem;
+  }
+  
+  h2 {
+    font-size: 1.2em;
+  }
+}
+
+/* Светлая тема */
+@media (prefers-color-scheme: light) {
+  .app-header {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.9) 0%, 
+      rgba(240, 248, 255, 0.8) 100%);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+  }
+  
+  .app-header h1 {
+    color: transparent;
+    text-shadow: none;
+  }
+  
+  .app-subtitle {
+    color: #2e7d32;
+  }
+  
+  .frame-selection, .text-selection, .preview-section {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+  }
+  
+  h2 {
+    color: #2e7d32;
+  }
+}
