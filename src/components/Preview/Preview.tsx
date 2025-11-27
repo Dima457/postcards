@@ -7,16 +7,17 @@ interface PreviewProps {
   selectedFrame: Frame | null;
   selectedText: GreetingText | null;
   selectedAddressee: Addressee | null;
+  getAdjustedText: (text: string, addressee: Addressee | null) => string;
 }
 
-const Preview = ({ selectedFrame, selectedText, selectedAddressee }: PreviewProps) => {
+const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedText }: PreviewProps) => {
   const previewRef = useRef<HTMLDivElement>(null);
 
   const getFinalText = () => {
     if (!selectedText) return 'Выберите текст поздравления';
     if (!selectedAddressee) return 'Выберите адресата';
     
-    return selectedText.text.replace('[Адресат]', selectedAddressee.name);
+    return getAdjustedText(selectedText.text, selectedAddressee);
   };
 
   const handleDownload = async () => {
