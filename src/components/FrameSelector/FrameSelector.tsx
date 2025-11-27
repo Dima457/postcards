@@ -21,6 +21,7 @@ const FrameSelector = ({ frames, selectedFrame, onSelectFrame }: FrameSelectorPr
               src={frame.url} 
               alt={frame.name}
               className="frame-image"
+              loading="lazy"
             />
             <div className="frame-name">{frame.name}</div>
           </div>

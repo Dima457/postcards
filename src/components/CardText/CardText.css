@@ -1,35 +1,40 @@
 .card-text {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .addressee-section h3,
 .texts-section h3 {
   color: #c8e6c9;
   margin-bottom: 1rem;
-  font-size: 1.2em;
+  font-size: 1.1em;
+  text-align: center;
 }
 
 /* Стили для кнопок адресатов */
 .addressees-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0.6rem;
   justify-content: center;
   margin-bottom: 1rem;
+  padding: 0 0.5rem;
 }
 
 .addressee-btn {
-  padding: 0.6rem 1.2rem;
+  padding: 0.5rem 1rem;
   border: 2px solid #4caf50;
   background: transparent;
   color: #e8f4f8;
-  border-radius: 25px;
+  border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.9em;
+  font-size: 0.85em;
   white-space: nowrap;
+  flex: 1;
+  min-width: fit-content;
+  max-width: 48%;
 }
 
 .addressee-btn:hover {
@@ -40,17 +45,18 @@
 .addressee-btn.selected {
   background: #4caf50;
   color: white;
-  box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
 /* Стили для карточек с текстом */
 .texts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-  max-height: 400px;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  max-height: 50vh;
   overflow-y: auto;
   padding: 0.5rem;
+  scrollbar-width: thin;
 }
 
 .text-card {
@@ -60,50 +66,142 @@
   padding: 1rem;
   background: rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
-  min-height: 120px;
+  min-height: 80px;
   display: flex;
   align-items: center;
+  touch-action: manipulation;
 }
 
 .text-card:hover {
   border-color: rgba(255, 193, 7, 0.5);
   background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .text-card.selected {
   border-color: #ffc107;
   background: rgba(255, 193, 7, 0.1);
-  box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
 }
 
 .text-preview {
   color: #e8f4f8;
-  font-size: 0.9em;
+  font-size: 0.85em;
   line-height: 1.4;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 /* Полоса прокрутки */
 .texts-grid::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 .texts-grid::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .texts-grid::-webkit-scrollbar-thumb {
   background: #4caf50;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .texts-grid::-webkit-scrollbar-thumb:hover {
   background: #45a049;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 480px) {
+  .card-text {
+    gap: 1rem;
+  }
+  
+  .addressee-section h3,
+  .texts-section h3 {
+    font-size: 1em;
+    margin-bottom: 0.8rem;
+  }
+  
+  .addressees-grid {
+    gap: 0.5rem;
+  }
+  
+  .addressee-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8em;
+    border-radius: 15px;
+    max-width: 100%;
+  }
+  
+  .texts-grid {
+    gap: 0.6rem;
+    max-height: 45vh;
+  }
+  
+  .text-card {
+    padding: 0.8rem;
+    min-height: 70px;
+    border-radius: 10px;
+  }
+  
+  .text-preview {
+    font-size: 0.8em;
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* Планшеты */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .texts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 40vh;
+  }
+  
+  .addressee-btn {
+    max-width: 30%;
+  }
+}
+
+/* Десктоп */
+@media (min-width: 1025px) {
+  .texts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 360px) {
+  .addressee-btn {
+    font-size: 0.75em;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .text-card {
+    padding: 0.6rem;
+    min-height: 60px;
+  }
+  
+  .text-preview {
+    font-size: 0.75em;
+  }
+}
+
+/* Портретная ориентация */
+@media (orientation: portrait) {
+  .texts-grid {
+    max-height: 40vh;
+  }
+}
+
+/* Ландшафтная ориентация */
+@media (orientation: landscape) and (max-height: 500px) {
+  .texts-grid {
+    max-height: 35vh;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Светлая тема */
@@ -141,5 +239,26 @@
   
   .text-preview {
     color: #2c3e50;
+  }
+}
+
+/* Поддержка касаний */
+@media (hover: none) {
+  .addressee-btn:hover {
+    transform: none;
+    background: transparent;
+  }
+  
+  .addressee-btn.selected:hover {
+    background: #4caf50;
+  }
+  
+  .text-card:hover {
+    transform: none;
+    border-color: transparent;
+  }
+  
+  .text-card.selected:hover {
+    border-color: #ffc107;
   }
 }

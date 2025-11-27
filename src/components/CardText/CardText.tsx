@@ -1,4 +1,4 @@
-import  type { GreetingText, Addressee } from '../../App';
+import type { GreetingText, Addressee } from '../../App';
 import './CardText.css';
 
 interface CardTextProps {

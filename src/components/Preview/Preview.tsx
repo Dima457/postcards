@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import  type { Frame, GreetingText, Addressee } from '../../App';
+import type { Frame, GreetingText, Addressee } from '../../App';
 import { toPng } from 'html-to-image';
 import './Preview.css';
 
@@ -20,12 +20,12 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee }: PreviewProp
   };
 
   const handleDownload = async () => {
-    if (!previewRef.current) return;
+    if (!previewRef.current || !canDownload) return;
 
     try {
       const dataUrl = await toPng(previewRef.current, {
         quality: 0.95,
-        pixelRatio: 2, // Для лучшего качества
+        pixelRatio: 2,
         backgroundColor: '#ffffff'
       });
 

@@ -4,10 +4,11 @@
 
 .frames-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
   justify-items: center;
   margin-top: 1rem;
+  padding: 0 0.5rem;
 }
 
 .frame-card {
@@ -17,11 +18,13 @@
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid transparent;
-  max-width: 200px;
+  max-width: 180px;
+  width: 100%;
+  touch-action: manipulation;
 }
 
 .frame-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(76, 175, 80, 0.5);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -30,12 +33,12 @@
 .frame-card.selected {
   border-color: #4caf50;
   background: rgba(76, 175, 80, 0.1);
-  box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
 }
 
 .frame-image {
   width: 100%;
-  height: 150px;
+  height: 120px;
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -46,6 +49,79 @@
   font-weight: 500;
   color: #e8f4f8;
   text-align: center;
+  font-size: 0.9em;
+  line-height: 1.2;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 480px) {
+  .frames-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  
+  .frame-card {
+    max-width: 140px;
+    padding: 0.4rem;
+    border-radius: 10px;
+  }
+  
+  .frame-image {
+    height: 100px;
+  }
+  
+  .frame-name {
+    font-size: 0.8em;
+    margin-top: 0.3rem;
+  }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 360px) {
+  .frames-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  
+  .frame-card {
+    max-width: 200px;
+  }
+  
+  .frame-image {
+    height: 110px;
+  }
+}
+
+/* Планшеты */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .frames-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  
+  .frame-card {
+    max-width: 200px;
+  }
+  
+  .frame-image {
+    height: 140px;
+  }
+}
+
+/* Ландшафтная ориентация на мобильных */
+@media (orientation: landscape) and (max-height: 500px) {
+  .frames-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+  }
+  
+  .frame-image {
+    height: 80px;
+  }
+  
+  .frame-name {
+    font-size: 0.75em;
+  }
 }
 
 /* Светлая тема */
@@ -64,5 +140,25 @@
   
   .frame-name {
     color: #2c3e50;
+  }
+}
+
+/* Поддержка касаний */
+@media (hover: none) {
+  .frame-card:hover {
+    transform: none;
+    border-color: transparent;
+  }
+  
+  .frame-card.selected:hover {
+    border-color: #4caf50;
+    transform: none;
+  }
+}
+
+/* Высокопиксельные экраны */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .frame-image {
+    image-rendering: -webkit-optimize-contrast;
   }
 }
