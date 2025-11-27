@@ -1,4 +1,4 @@
-import  type { GreetingText, Addressee } from '../../App';
+import type { GreetingText, Addressee } from '../../App';
 import './CardText.css';
 
 interface CardTextProps {
@@ -8,6 +8,7 @@ interface CardTextProps {
   selectedAddressee: Addressee | null;
   onSelectText: (text: GreetingText) => void;
   onSelectAddressee: (addressee: Addressee) => void;
+  getAdjustedText: (text: string, addressee: Addressee | null) => string;
 }
 
 const CardText = ({
@@ -17,6 +18,7 @@ const CardText = ({
   selectedAddressee,
   onSelectText,
   onSelectAddressee,
+  getAdjustedText,
 }: CardTextProps) => {
   return (
     <div className="card-text">
@@ -47,10 +49,7 @@ const CardText = ({
               onClick={() => onSelectText(text)}
             >
               <div className="text-preview">
-                {selectedAddressee 
-                  ? text.text.replace('[Адресат]', selectedAddressee.name)
-                  : text.text.replace('[Адресат]', '...')
-                }
+                {getAdjustedText(text.text, selectedAddressee)}
               </div>
             </div>
           ))}

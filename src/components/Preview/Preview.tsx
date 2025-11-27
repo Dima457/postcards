@@ -1,34 +1,50 @@
 import { useRef } from 'react';
-import  type { Frame, GreetingText, Addressee } from '../../App';
+import type { Frame, GreetingText, Addressee } from '../../App';
 import { toPng } from 'html-to-image';
 import './Preview.css';
+
+// Импортируем изображение
+import ecoToyImage from '../../assets/eco-toy.jpg';
 
 interface PreviewProps {
   selectedFrame: Frame | null;
   selectedText: GreetingText | null;
   selectedAddressee: Addressee | null;
+  getAdjustedText: (text: string, addressee: Addressee | null) => string;
 }
 
-const Preview = ({ selectedFrame, selectedText, selectedAddressee }: PreviewProps) => {
+const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedText }: PreviewProps) => {
   const previewRef = useRef<HTMLDivElement>(null);
 
   const getFinalText = () => {
     if (!selectedText) return 'Выберите текст поздравления';
     if (!selectedAddressee) return 'Выберите адресата';
     
-    return selectedText.text.replace('[Адресат]', selectedAddressee.name);
+    return getAdjustedText(selectedText.text, selectedAddressee);
+  };
+
+  // Функция для определения класса рамки в зависимости от ID
+  const getFrameClass = () => {
+    if (!selectedFrame) return '';
+    
+    switch (selectedFrame.id) {
+      case 1:
+        return 'frame-1'; // Темно-красная рамка
+      case 3:
+        return 'frame-3'; // Темно-зеленая рамка
+      default:
+        return '';
+    }
   };
 
   const handleDownload = async () => {
-    if (!previewRef.current) return;
-
+    if (!previewRef.current || !canDownload) return;
     try {
       const dataUrl = await toPng(previewRef.current, {
         quality: 0.95,
-        pixelRatio: 2, // Для лучшего качества
+        pixelRatio: 2,
         backgroundColor: '#ffffff'
       });
-
       const link = document.createElement('a');
       link.download = `new-year-card-${Date.now()}.png`;
       link.href = dataUrl;
@@ -43,19 +59,31 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee }: PreviewProp
 
   return (
     <div className="preview">
-      <div 
+      <div
         ref={previewRef}
         className={`preview-card ${selectedFrame ? 'with-frame' : 'placeholder'}`}
       >
         {selectedFrame ? (
           <>
-            <img 
-              src={selectedFrame.url} 
-              alt="Выбранная рамка" 
+            <img
+              src={selectedFrame.url}
+              alt="Выбранная рамка"
               className="preview-frame"
             />
             <div className="preview-text-content">
-              <div className="text-container">
+              <div className={`text-container ${getFrameClass()}`}>
+                {/* Добавляем изображение эко-игрушки */}
+                <img 
+                  src={ecoToyImage} 
+                  alt="Эко игрушка" 
+                  className="eco-toy-image"
+                  style={{ 
+                    width: '45px', 
+                    height: '45px',
+                    display: 'block',
+                    margin: '0 auto 10px auto'
+                  }}
+                />
                 <p className="greeting-text">{getFinalText()}</p>
               </div>
             </div>
@@ -71,7 +99,7 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee }: PreviewProp
       </div>
       
       <div className="preview-actions">
-        <button 
+        <button
           className={`download-btn ${!canDownload ? 'disabled' : ''}`}
           onClick={handleDownload}
           disabled={!canDownload}
