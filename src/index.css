@@ -1,4 +1,4 @@
-/* index.css */
+/* index.css - Базовые мобильные стили */
 :root {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -19,11 +19,15 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; /* Убирает синий highlight при касаниях */
 }
 
 html {
   height: 100%;
   overflow-x: hidden;
+  /* Предотвращает скролл за пределы страницы */
+  position: fixed;
+  width: 100%;
 }
 
 body {
@@ -34,21 +38,31 @@ body {
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
+  /* Улучшает производительность на мобильных */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 #root {
   width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2em;
   line-height: 1.1;
+  margin: 0;
 }
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.8em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -56,6 +70,10 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
   touch-action: manipulation;
+  min-height: 44px; /* Минимальный размер для касаний */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 button:hover {
@@ -64,32 +82,16 @@ button:hover {
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid #646cff;
+  outline-offset: 2px;
 }
 
-/* Мобильная адаптация */
-@media (max-width: 768px) {
+/* === АДАПТИВНЫЕ СТИЛИ === */
+
+/* Маленькие смартфоны */
+@media (max-width: 360px) {
   :root {
     font-size: 14px;
-  }
-  
-  body {
-    place-items: flex-start;
-  }
-  
-  h1 {
-    font-size: 2em;
-  }
-  
-  button {
-    padding: 0.5em 1em;
-    font-size: 0.9em;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    font-size: 13px;
   }
   
   h1 {
@@ -97,37 +99,55 @@ button:focus-visible {
   }
   
   button {
-    padding: 0.4em 0.8em;
-    font-size: 0.85em;
+    padding: 0.7em 1em;
+    font-size: 0.9em;
+    min-height: 42px;
   }
 }
 
-/* Очень маленькие экраны */
-@media (max-width: 360px) {
+/* Средние смартфоны */
+@media (min-width: 361px) and (max-width: 480px) {
   :root {
-    font-size: 12px;
+    font-size: 15px;
+  }
+  
+  h1 {
+    font-size: 1.8em;
+  }
+}
+
+/* Планшеты */
+@media (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    font-size: 16px;
+  }
+  
+  h1 {
+    font-size: 2.2em;
   }
 }
 
 /* Ландшафтная ориентация */
 @media (orientation: landscape) and (max-height: 500px) {
+  :root {
+    font-size: 14px;
+  }
+  
   body {
     place-items: flex-start;
   }
 }
 
+/* Светлая тема */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
   
-  a:hover {
-    color: #747bff;
-  }
-  
   button {
     background-color: #f9f9f9;
+    color: #213547;
   }
 }
 
@@ -138,16 +158,28 @@ button:focus-visible {
   }
 }
 
-/* Улучшение читаемости на маленьких экранах */
-@media (max-width: 768px) {
-  * {
-    -webkit-tap-highlight-color: transparent;
+/* Фикс для iOS Safari 100vh */
+@supports (-webkit-touch-callout: none) {
+  body {
+    height: -webkit-fill-available;
+  }
+  
+  #root {
+    height: -webkit-fill-available;
   }
 }
 
-/* Предотвращение масштабирования при двойном тапе на iOS */
+/* Улучшение читаемости на маленьких экранах */
 @media (max-width: 768px) {
-  button, a {
-    touch-action: manipulation;
+  * {
+    text-size-adjust: 100%;
   }
+}
+
+/* Предотвращение выделения текста на кнопках */
+button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
