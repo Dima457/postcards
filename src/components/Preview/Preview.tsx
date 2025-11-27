@@ -5,6 +5,9 @@ import './Preview.css';
 
 // Импортируем изображение
 import ecoToyImage from '../../assets/eco-toy.png';
+// Импортируем иконки социальных сетей
+import vkIcon from '../../assets/vk-icon.jpg';
+import wtsIcon from '../../assets/wts-icon.jpg';
 
 interface PreviewProps {
   selectedFrame: Frame | null;
@@ -19,14 +22,14 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedTe
   const getFinalText = () => {
     if (!selectedText) return 'Выберите текст поздравления';
     if (!selectedAddressee) return 'Выберите адресата';
-    
+   
     return getAdjustedText(selectedText.text, selectedAddressee);
   };
 
   // Функция для определения класса рамки в зависимости от ID
   const getFrameClass = () => {
     if (!selectedFrame) return '';
-    
+   
     switch (selectedFrame.id) {
       case 1:
         return 'frame-1'; // Темно-красная рамка
@@ -73,12 +76,12 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedTe
             <div className="preview-text-content">
               <div className={`text-container ${getFrameClass()}`}>
                 {/* Добавляем изображение эко-игрушки */}
-                <img 
-                  src={ecoToyImage} 
-                  alt="Эко игрушка" 
+                <img
+                  src={ecoToyImage}
+                  alt="Эко игрушка"
                   className="eco-toy-image"
-                  style={{ 
-                    width: '45px', 
+                  style={{
+                    width: '45px',
                     height: '45px',
                     display: 'block',
                     margin: '0 auto 10px auto'
@@ -97,7 +100,7 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedTe
           </div>
         )}
       </div>
-      
+     
       <div className="preview-actions">
         <button
           className={`download-btn ${!canDownload ? 'disabled' : ''}`}
@@ -106,12 +109,41 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedTe
         >
           🎁 Скачать открытку
         </button>
-        
+       
         <div className="preview-info">
           {!selectedFrame && '🖼️ Выберите рамку • '}
           {!selectedText && '📝 Выберите текст • '}
           {!selectedAddressee && '👤 Выберите адресата'}
           {canDownload && '✅ Всё готово! Можно скачивать открытку'}
+          
+          {/* Добавляем иконки соцсетей и пригласительную надпись */}
+          <div className="social-section">
+            <span className="invitation-text">Присоединяйтесь к нам: </span>
+            <a 
+              href="https://vk.com/ekoluxe?from=search" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <img 
+                src={vkIcon} 
+                alt="ВКонтакте" 
+                className="social-icon"
+              />
+            </a>
+            <a 
+              href="https://chat.whatsapp.com/I9XRGIOxO9A8Xu2xkeUd5l?mode=hqrt3" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <img 
+                src={wtsIcon} 
+                alt="WhatsApp" 
+                className="social-icon"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>

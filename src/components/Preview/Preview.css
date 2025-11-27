@@ -39,6 +39,7 @@
   right: 0;
   bottom: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
@@ -57,6 +58,7 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(5px);
   position: relative;
+  margin-bottom: 1rem;
 }
 
 /* Темно-красная рамка для ID 1 */
@@ -85,6 +87,90 @@
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+/* Стили для пригласительной надписи и иконок соцсетей */
+.social-invitation {
+  margin-top: 10px;
+  text-align: center;
+  padding: 15px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  width: 100%;
+  max-width: 55%;
+}
+
+.invitation-text {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #333;
+  font-weight: 500;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.social-link {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для секции с соцсетями в preview-info */
+.preview-info .social-section {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.preview-info .invitation-text {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.preview-info .social-link {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.preview-info .social-link:hover {
+  transform: scale(1.1);
+}
+
+.preview-info .social-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* Адаптация для темных рамок */
+.frame-1 .invitation-text,
+.frame-3 .invitation-text {
+  color: white;
+}
+
+.frame-1 .social-invitation,
+.frame-3 .social-invitation {
+  border-top-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Стили для экологической игрушки */
@@ -182,7 +268,7 @@
   width: 100%;
 }
 
-/* Мобильная адаптация */
+/* Адаптация для мобильных устройств */
 @media (max-width: 768px) {
   .preview {
     gap: 1rem;
@@ -202,11 +288,38 @@
     padding: 1rem;
     max-width: 55%;
     border-radius: 10px;
+    margin-bottom: 0.8rem;
   }
 
   .greeting-text {
     font-size: 0.9em;
     line-height: 1.4;
+  }
+
+  .social-invitation {
+    max-width: 55%;
+    padding: 10px 0;
+    margin-top: 5px;
+  }
+
+  .invitation-text {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .social-links {
+    gap: 15px;
+  }
+
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Адаптация для секции с соцсетями в preview-info на мобильных */
+  .preview-info .social-section {
+    flex-direction: column;
+    gap: 8px;
   }
 
   .download-btn {
@@ -242,11 +355,36 @@
     padding: 0.8rem;
     max-width: 55%;
     border-width: 1px;
+    margin-bottom: 0.6rem;
   }
 
   .greeting-text {
     font-size: 0.85em;
     line-height: 1.3;
+  }
+
+  .social-invitation {
+    max-width: 55%;
+    padding: 8px 0;
+  }
+
+  .invitation-text {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .social-links {
+    gap: 12px;
+  }
+
+  .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .preview-info .social-icon {
+    width: 22px;
+    height: 22px;
   }
 
   .download-btn {
@@ -281,10 +419,33 @@
 
   .text-container {
     padding: 0.6rem;
+    margin-bottom: 0.5rem;
   }
 
   .greeting-text {
     font-size: 0.8em;
+  }
+
+  .social-invitation {
+    padding: 6px 0;
+  }
+
+  .invitation-text {
+    font-size: 11px;
+  }
+
+  .social-links {
+    gap: 10px;
+  }
+
+  .social-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .preview-info .social-icon {
+    width: 20px;
+    height: 20px;
   }
 
   .download-btn {
@@ -304,6 +465,7 @@
   .text-container {
     max-width: 55%;
     padding: 0.8rem;
+    margin-bottom: 0.5rem;
   }
 
   .greeting-text {
@@ -312,6 +474,11 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .social-invitation {
+    max-width: 55%;
+    padding: 8px 0;
   }
 }
 
@@ -366,11 +533,16 @@
 @media (prefers-reduced-motion: reduce) {
   .preview-card,
   .download-btn,
-  .text-container {
+  .text-container,
+  .social-link {
     transition: none;
   }
 
   .download-btn:hover:not(.disabled) {
+    transform: none;
+  }
+
+  .social-link:hover {
     transform: none;
   }
 }
