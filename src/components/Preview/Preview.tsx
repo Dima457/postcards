@@ -20,16 +20,28 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedTe
     return getAdjustedText(selectedText.text, selectedAddressee);
   };
 
+  // Функция для определения класса рамки в зависимости от ID
+  const getFrameClass = () => {
+    if (!selectedFrame) return '';
+    
+    switch (selectedFrame.id) {
+      case 1:
+        return 'frame-1'; // Темно-красная рамка
+      case 3:
+        return 'frame-3'; // Темно-зеленая рамка
+      default:
+        return '';
+    }
+  };
+
   const handleDownload = async () => {
     if (!previewRef.current || !canDownload) return;
-
     try {
       const dataUrl = await toPng(previewRef.current, {
         quality: 0.95,
         pixelRatio: 2,
         backgroundColor: '#ffffff'
       });
-
       const link = document.createElement('a');
       link.download = `new-year-card-${Date.now()}.png`;
       link.href = dataUrl;
@@ -44,19 +56,19 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedTe
 
   return (
     <div className="preview">
-      <div 
+      <div
         ref={previewRef}
         className={`preview-card ${selectedFrame ? 'with-frame' : 'placeholder'}`}
       >
         {selectedFrame ? (
           <>
-            <img 
-              src={selectedFrame.url} 
-              alt="Выбранная рамка" 
+            <img
+              src={selectedFrame.url}
+              alt="Выбранная рамка"
               className="preview-frame"
             />
             <div className="preview-text-content">
-              <div className="text-container">
+              <div className={`text-container ${getFrameClass()}`}>
                 <p className="greeting-text">{getFinalText()}</p>
               </div>
             </div>
@@ -72,7 +84,7 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedTe
       </div>
       
       <div className="preview-actions">
-        <button 
+        <button
           className={`download-btn ${!canDownload ? 'disabled' : ''}`}
           onClick={handleDownload}
           disabled={!canDownload}
