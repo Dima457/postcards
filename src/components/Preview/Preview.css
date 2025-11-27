@@ -142,7 +142,7 @@
 
 .preview-info .invitation-text {
   font-size: 14px;
-  color: #666;
+  color: black;
   margin-bottom: 0;
 }
 
@@ -316,10 +316,10 @@
     height: 28px;
   }
 
-  /* Адаптация для секции с соцсетями в preview-info на мобильных */
+  /* ИСПРАВЛЕНИЕ: Соцсети в preview-info теперь горизонтально на мобильных */
   .preview-info .social-section {
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row; /* Изменено с column на row */
+    gap: 10px;
   }
 
   .download-btn {
@@ -387,6 +387,12 @@
     height: 22px;
   }
 
+  /* ИСПРАВЛЕНИЕ: Соцсети в preview-info горизонтально на маленьких экранах */
+  .preview-info .social-section {
+    flex-direction: row; /* Изменено с column на row */
+    gap: 8px;
+  }
+
   .download-btn {
     min-width: 160px;
     padding: 0.6rem 1rem;
@@ -446,6 +452,12 @@
   .preview-info .social-icon {
     width: 20px;
     height: 20px;
+  }
+
+  /* ИСПРАВЛЕНИЕ: Соцсети в preview-info горизонтально на очень маленьких экранах */
+  .preview-info .social-section {
+    flex-direction: row; /* Изменено с column на row */
+    gap: 6px;
   }
 
   .download-btn {

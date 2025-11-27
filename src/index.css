@@ -173,6 +173,7 @@ button:focus-visible {
 @media (max-width: 768px) {
   * {
     text-size-adjust: 100%;
+    color: black;
   }
 }
 
