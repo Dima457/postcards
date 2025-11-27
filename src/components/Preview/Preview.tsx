@@ -4,7 +4,7 @@ import { toPng } from 'html-to-image';
 import './Preview.css';
 
 // Импортируем изображение
-import ecoToyImage from '../../assets/eco-toy.jpg';
+import ecoToyImage from '../../assets/eco-toy.png';
 
 interface PreviewProps {
   selectedFrame: Frame | null;
