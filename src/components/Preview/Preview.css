@@ -56,6 +56,7 @@
   border: 2px solid #ffd54f;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(5px);
+  position: relative;
 }
 
 /* Темно-красная рамка для ID 1 */
@@ -84,6 +85,12 @@
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+/* Стили для экологической игрушки */
+.eco-toy-image {
+  border-radius: 4px;
+  object-fit: cover;
 }
 
 /* Стили для плейсхолдера */

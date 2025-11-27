@@ -3,6 +3,9 @@ import type { Frame, GreetingText, Addressee } from '../../App';
 import { toPng } from 'html-to-image';
 import './Preview.css';
 
+// Импортируем изображение
+import ecoToyImage from '../../assets/eco-toy.jpg';
+
 interface PreviewProps {
   selectedFrame: Frame | null;
   selectedText: GreetingText | null;
@@ -69,6 +72,18 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedTe
             />
             <div className="preview-text-content">
               <div className={`text-container ${getFrameClass()}`}>
+                {/* Добавляем изображение эко-игрушки */}
+                <img 
+                  src={ecoToyImage} 
+                  alt="Эко игрушка" 
+                  className="eco-toy-image"
+                  style={{ 
+                    width: '45px', 
+                    height: '45px',
+                    display: 'block',
+                    margin: '0 auto 10px auto'
+                  }}
+                />
                 <p className="greeting-text">{getFinalText()}</p>
               </div>
             </div>
