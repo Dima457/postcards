@@ -55,7 +55,8 @@
   min-width: 45%; /* Добавим минимальную ширину */
   max-height: 80%;
   overflow: hidden;
-  border: 2px solid #ffd54f;
+  /* СВЕТЛО-ЗЕЛЕНАЯ ГРАНИЦА - ОСНОВНОЕ ИЗМЕНЕНИЕ */
+  border: 2px solid #90EE90;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(5px);
   position: relative;
@@ -70,20 +71,17 @@
   min-height: 80px; /* Минимальная высота */
 }
 
-/* Темно-красная рамка для ID 1 */
-.text-container.frame-1 {
-  border-color: #8B0000;
-  background: linear-gradient(135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 240, 240, 0.9) 100%);
-}
+/* УДАЛЕНО: Темно-красная рамка для ID 1 */
+/* УДАЛЕНО: Темно-зеленая рамка для ID 3 */
 
-/* Темно-зеленая рамка для ID 3 */
-.text-container.frame-3 {
-  border-color: #006400;
+/* Теперь все рамки имеют светло-зеленую границу */
+.text-container.frame-1,
+.text-container.frame-3,
+.text-container {
+  border-color: #90EE90; /* Светло-зеленый цвет для всех рамок */
   background: linear-gradient(135deg,
     rgba(255, 255, 255, 0.95) 0%,
-    rgba(240, 255, 240, 0.9) 100%);
+    rgba(240, 255, 240, 0.9) 100%); /* Светло-зеленый фон для всех */
 }
 
 .greeting-text {
@@ -314,6 +312,8 @@
     min-width: 50%;
     border-radius: 10px;
     margin-bottom: 0.8rem;
+    /* Сохраняем светло-зеленую границу */
+    border: 2px solid #90EE90;
   }
 
   .greeting-text {
@@ -380,7 +380,7 @@
     padding: 0.8rem;
     max-width: 75%; /* Еще больше для маленьких экранов */
     min-width: 55%;
-    border-width: 1px;
+    border-width: 2px solid #90EE90; /* Сохраняем светло-зеленую границу */
     margin-bottom: 0.6rem;
   }
 
@@ -453,6 +453,8 @@
     padding: 0.6rem;
     max-width: 80%; /* Максимальная ширина на очень маленьких экранах */
     margin-bottom: 0.5rem;
+    /* Сохраняем светло-зеленую границу */
+    border: 2px solid #90EE90;
   }
 
   .greeting-text {
@@ -506,6 +508,8 @@
     max-width: 60%;
     padding: 0.8rem;
     margin-bottom: 0.5rem;
+    /* Сохраняем светло-зеленую границу */
+    border: 2px solid #90EE90;
   }
 
   .greeting-text {
@@ -529,6 +533,8 @@
 
   .text-container {
     max-width: 60%;
+    /* Сохраняем светло-зеленую границу */
+    border: 2px solid #90EE90;
   }
 
   .greeting-text {
@@ -560,6 +566,8 @@
   .text-container {
     border-width: 3px;
     background: white;
+    /* Усиливаем светло-зеленую границу */
+    border-color: #32CD32;
   }
 
   .download-btn {
