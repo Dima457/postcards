@@ -3,7 +3,7 @@ import './App.css';
 // Импорты картинок рамок
 import frameBalls from '/src/assets/balls.jpg';
 import frameBox from '/src/assets/Box.jpeg';
-import frameFirAndCones from './assets/FirAndCones.jpg';
+import frameFirAndCones from '/src/assets/FirOfBranches.jpg';
 // Импорты компонентов
 import FrameSelector from './components/FrameSelector/FrameSelector';
 import CardText from './components/CardText/CardText';
