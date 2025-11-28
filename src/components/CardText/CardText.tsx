@@ -79,7 +79,6 @@ const CardText = ({
             >
               <option value="male">Мужской род</option>
               <option value="female">Женский род</option>
-              <option value="plural">Множественное число</option>
             </select>
             <button 
               onClick={handleCustomAddresseeSelect}

@@ -4,7 +4,7 @@ import { toPng } from 'html-to-image';
 import './Preview.css';
 
 // Импортируем изображение
-import ecoToyImage from '../../assets/eco-toy.png';
+import ecoToyImage from '../../assets/logo.png';
 // Импортируем иконки социальных сетей
 import vkIcon from '../../assets/vk-icon.jpg';
 import wtsIcon from '../../assets/wts-icon.jpg';
@@ -81,8 +81,8 @@ const Preview = ({ selectedFrame, selectedText, selectedAddressee, getAdjustedTe
                   alt="Эко игрушка"
                   className="eco-toy-image"
                   style={{
-                    width: '45px',
-                    height: '45px',
+                    
+                    height: '40px',
                     display: 'block',
                     margin: '0 auto 10px auto'
                   }}

@@ -51,7 +51,8 @@
     rgba(255, 248, 225, 0.9) 100%);
   padding: 1.5rem;
   border-radius: 12px;
-  max-width: 55%;
+  max-width: 65%; /* Увеличим максимальную ширину */
+  min-width: 45%; /* Добавим минимальную ширину */
   max-height: 80%;
   overflow: hidden;
   border: 2px solid #ffd54f;
@@ -59,6 +60,14 @@
   backdrop-filter: blur(5px);
   position: relative;
   margin-bottom: 1rem;
+  
+  /* Гибкие свойства для адаптации под контент */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto; /* Автоматическая ширина */
+  min-height: 80px; /* Минимальная высота */
 }
 
 /* Темно-красная рамка для ID 1 */
@@ -87,6 +96,21 @@
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   word-wrap: break-word;
   overflow-wrap: break-word;
+  
+  /* Автоматическое уменьшение шрифта для длинного текста */
+  font-size: clamp(0.75em, 2.5vw, 1em);
+  
+  /* Ограничение максимальной высоты с прокруткой */
+  max-height: 100%;
+  overflow-y: auto;
+  
+  /* Гибкое заполнение пространства */
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.2rem;
 }
 
 /* Стили для пригласительной надписи и иконок соцсетей */
@@ -96,7 +120,7 @@
   padding: 15px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   width: 100%;
-  max-width: 55%;
+  max-width: 65%; /* Синхронизируем с text-container */
 }
 
 .invitation-text {
@@ -286,18 +310,19 @@
 
   .text-container {
     padding: 1rem;
-    max-width: 55%;
+    max-width: 70%; /* Увеличим для мобильных */
+    min-width: 50%;
     border-radius: 10px;
     margin-bottom: 0.8rem;
   }
 
   .greeting-text {
-    font-size: 0.9em;
+    font-size: clamp(0.7em, 3vw, 0.9em);
     line-height: 1.4;
   }
 
   .social-invitation {
-    max-width: 55%;
+    max-width: 70%; /* Синхронизируем с text-container */
     padding: 10px 0;
     margin-top: 5px;
   }
@@ -316,9 +341,9 @@
     height: 28px;
   }
 
-  /* ИСПРАВЛЕНИЕ: Соцсети в preview-info теперь горизонтально на мобильных */
+  /* Соцсети в preview-info теперь горизонтально на мобильных */
   .preview-info .social-section {
-    flex-direction: row; /* Изменено с column на row */
+    flex-direction: row;
     gap: 10px;
   }
 
@@ -353,18 +378,19 @@
 
   .text-container {
     padding: 0.8rem;
-    max-width: 55%;
+    max-width: 75%; /* Еще больше для маленьких экранов */
+    min-width: 55%;
     border-width: 1px;
     margin-bottom: 0.6rem;
   }
 
   .greeting-text {
-    font-size: 0.85em;
+    font-size: clamp(0.65em, 3.5vw, 0.85em);
     line-height: 1.3;
   }
 
   .social-invitation {
-    max-width: 55%;
+    max-width: 75%; /* Синхронизируем с text-container */
     padding: 8px 0;
   }
 
@@ -387,9 +413,9 @@
     height: 22px;
   }
 
-  /* ИСПРАВЛЕНИЕ: Соцсети в preview-info горизонтально на маленьких экранах */
+  /* Соцсети в preview-info горизонтально на маленьких экранах */
   .preview-info .social-section {
-    flex-direction: row; /* Изменено с column на row */
+    flex-direction: row;
     gap: 8px;
   }
 
@@ -425,14 +451,16 @@
 
   .text-container {
     padding: 0.6rem;
+    max-width: 80%; /* Максимальная ширина на очень маленьких экранах */
     margin-bottom: 0.5rem;
   }
 
   .greeting-text {
-    font-size: 0.8em;
+    font-size: clamp(0.6em, 4vw, 0.8em);
   }
 
   .social-invitation {
+    max-width: 80%; /* Синхронизируем с text-container */
     padding: 6px 0;
   }
 
@@ -454,9 +482,9 @@
     height: 20px;
   }
 
-  /* ИСПРАВЛЕНИЕ: Соцсети в preview-info горизонтально на очень маленьких экранах */
+  /* Соцсети в preview-info горизонтально на очень маленьких экранах */
   .preview-info .social-section {
-    flex-direction: row; /* Изменено с column на row */
+    flex-direction: row;
     gap: 6px;
   }
 
@@ -475,21 +503,19 @@
   }
 
   .text-container {
-    max-width: 55%;
+    max-width: 60%;
     padding: 0.8rem;
     margin-bottom: 0.5rem;
   }
 
   .greeting-text {
-    font-size: 0.8em;
-    -webkit-line-clamp: 4;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: clamp(0.65em, 2.5vw, 0.8em);
+    max-height: 120px;
+    overflow-y: auto;
   }
 
   .social-invitation {
-    max-width: 55%;
+    max-width: 60%;
     padding: 8px 0;
   }
 }
@@ -502,11 +528,11 @@
   }
 
   .text-container {
-    max-width: 55%;
+    max-width: 60%;
   }
 
   .greeting-text {
-    font-size: 0.95em;
+    font-size: clamp(0.8em, 2vw, 0.95em);
   }
 }
 
