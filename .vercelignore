@@ -1,0 +1,25 @@
+# Игнорировать ненужные файлы для ускорения деплоя
+.DS_Store
+.git
+.gitignore
+node_modules
+npm-debug.log
+.nyc_output
+coverage
+*.tsbuildinfo
+Dockerfile*
+docker-compose.yml
+nginx.conf
+dist
+build
+
+# Исходники TypeScript (если не нужны на сервере)
+src/**/*.ts
+src/**/*.tsx
+tsconfig.*.json
+
+# Dev файлы
+*.dev.*
+*.local.*
+.env*
+!.env.example
